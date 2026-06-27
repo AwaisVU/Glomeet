@@ -14,8 +14,11 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 var app = builder.Build();
 
+builder.Services.AddCors();
+
 // Add Middleware
 
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000","https://localhost:3000"));
 app.MapControllers();
 
 //Define Scope of Services and seed the data
